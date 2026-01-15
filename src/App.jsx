@@ -98,7 +98,7 @@ function App() {
       const edge = {
         ...params,
         markerEnd: { type: MarkerType.ArrowClosed },
-        type: 'default', // Bezier curve for arcs
+        type: 'custom', // Use CustomEdge
         zIndex: 2000,
         label: alphabet[0] || 'a'
       };
@@ -228,8 +228,10 @@ function App() {
       id: `e_${nodeId}_self_${Date.now()}`,
       source: nodeId,
       target: nodeId,
+      sourceHandle: 't-source', // Force Top Handles for "Add Self Loop" button
+      targetHandle: 't-target',
       label: symbols,
-      type: 'default',
+      type: 'custom',
       zIndex: 2000,
       markerEnd: { type: 'arrowclosed' }
     };

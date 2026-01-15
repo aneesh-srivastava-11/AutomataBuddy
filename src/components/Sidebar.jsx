@@ -291,7 +291,7 @@ export default function Sidebar({
             )}
 
             <div className="mt-auto pt-4 border-t border-gray-100 text-xs text-center text-gray-400">
-                Formal Automata Engine
+                Copyright © Aneesh 2026
             </div>
         </div>
     );

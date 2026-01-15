@@ -7,9 +7,14 @@ import ReactFlow, {
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 import CustomNode from './CustomNode';
+import CustomEdge from './CustomEdge';
 
 const nodeTypes = {
     custom: CustomNode,
+};
+
+const edgeTypes = {
+    custom: CustomEdge,
 };
 
 export default function Editor({
@@ -29,6 +34,7 @@ export default function Editor({
                 nodes={nodes}
                 edges={edges}
                 nodeTypes={nodeTypes}
+                edgeTypes={edgeTypes}
                 onNodesChange={onNodesChange}
                 onEdgesChange={onEdgesChange}
                 onConnect={onConnect}

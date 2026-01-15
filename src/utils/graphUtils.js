@@ -64,7 +64,7 @@ export function automatonToGraph(automaton) {
                         source,
                         target: t,
                         label: symbol,
-                        type: 'default',
+                        type: 'custom',
                         zIndex: 2000,
                         markerEnd: { type: 'arrowclosed' } // Lowercase for React Flow marker type string usage usually, but we used enum before.
                         // Actually React Flow expects object or string. We used object previously.
