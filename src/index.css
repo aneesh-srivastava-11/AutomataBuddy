@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Scrollbar for Webkit */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+[data-theme='dark'] ::-webkit-scrollbar-thumb {
+  background: #4b5563;
+}
+
+[data-theme='dark'] ::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}
+
+:root {
+  --bg-color: #ffffff;
+  --text-color: #1f2937;
+  --sidebar-bg: #ffffff;
+  --sidebar-border: #e5e7eb;
+  --input-bg: #ffffff;
+  --input-border: #d1d5db;
+}
+
+[data-theme='dark'] {
+  --bg-color: #111827;
+  --text-color: #f3f4f6;
+  --sidebar-bg: #1f2937;
+  /* gray-800 */
+  --sidebar-border: #374151;
+  /* gray-700 */
+  --input-bg: #374151;
+  --input-border: #4b5563;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+/* React Flow Dark Mode Overrides */
+[data-theme='dark'] .react-flow__renderer {
+  background-color: #111827 !important;
+}
+
+[data-theme='dark'] .react-flow__node-custom {
+  color: black;
+  /* Keep nodes light for contrast or invert? CustomNode handles its own style */
+}
+
+/* Forcing specific components to map to variables if not using utility classes fully */
