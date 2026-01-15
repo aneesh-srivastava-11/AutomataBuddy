@@ -77,13 +77,33 @@ function App() {
   }, [simulationStep, verificationResult]); // Removed graphContext dependency
 
   const handleConnect = useCallback((params) => {
-    const edge = {
-      ...params,
-      markerEnd: { type: MarkerType.ArrowClosed },
-      type: 'smoothstep',
-      label: alphabet[0] || 'a' // Default to first char or 'a'
-    };
-    setEdges((eds) => addEdge(edge, eds));
+    setEdges((eds) => {
+      // Check if edge already exists
+      const existingEdge = eds.find(e =>
+        e.source === params.source &&
+        e.target === params.target
+      );
+
+      if (existingEdge) {
+        // Merge labels
+        const newLabel = existingEdge.label
+          ? `${existingEdge.label},${alphabet[0] || 'a'}`
+          : (alphabet[0] || 'a');
+
+        // Return updated edges with modified label
+        return eds.map(e => e.id === existingEdge.id ? { ...e, label: newLabel } : e);
+      }
+
+      // Otherwise create new edge
+      const edge = {
+        ...params,
+        markerEnd: { type: MarkerType.ArrowClosed },
+        type: 'default', // Bezier curve for arcs
+        zIndex: 2000,
+        label: alphabet[0] || 'a'
+      };
+      return addEdge(edge, eds);
+    });
   }, [setEdges, alphabet]);
 
   const handleUpdateElement = (field, value) => {
@@ -209,7 +229,8 @@ function App() {
       source: nodeId,
       target: nodeId,
       label: symbols,
-      type: 'smoothstep',
+      type: 'default',
+      zIndex: 2000,
       markerEnd: { type: 'arrowclosed' }
     };
 

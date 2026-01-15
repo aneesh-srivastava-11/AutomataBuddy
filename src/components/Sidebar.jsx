@@ -56,7 +56,7 @@ export default function Sidebar({
                     <input
                         type="text"
                         placeholder="e.g. 0,1 or a,b"
-                        className="w-full p-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded text-sm font-mono mb-1 pr-8 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                        className="w-full p-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded text-sm font-mono mb-1 pr-8 text-black dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
                         defaultValue={alphabet ? alphabet.join(',') : ""}
                         onBlur={(e) => {
                             const val = e.target.value;
@@ -128,7 +128,7 @@ export default function Sidebar({
                             <div className="flex items-center justify-between">
                                 <span className="text-sm">Label:</span>
                                 <input
-                                    className="w-20 p-1 border text-sm font-mono"
+                                    className="w-20 p-1 border text-sm font-mono text-black dark:text-white bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 rounded"
                                     value={selectedElement.data.label}
                                     onChange={(e) => onUpdateElement('label', e.target.value)}
                                 />
@@ -141,6 +141,23 @@ export default function Sidebar({
                                 />
                                 <span>Start State</span>
                             </label>
+
+                            {/* Start Arrow Direction (Only visible if Start State is checked) */}
+                            {selectedElement.data.isStart && (
+                                <div className="ml-6 mt-1 flex items-center space-x-2">
+                                    <span className="text-xs text-gray-500">Direction:</span>
+                                    <select
+                                        className="p-1 border text-xs rounded bg-white dark:bg-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600"
+                                        value={selectedElement.data.startDirection || 'left'}
+                                        onChange={(e) => onUpdateElement('startDirection', e.target.value)}
+                                    >
+                                        <option value="left">Left →</option>
+                                        <option value="top">Top ↓</option>
+                                        <option value="right">Right ←</option>
+                                        <option value="bottom">Bottom ↑</option>
+                                    </select>
+                                </div>
+                            )}
                             <label className="flex items-center space-x-2 text-sm cursor-pointer select-none">
                                 <input
                                     type="checkbox"
@@ -171,7 +188,7 @@ export default function Sidebar({
                             <div className="flex items-center justify-between">
                                 <span className="text-sm">Symbol:</span>
                                 <input
-                                    className="w-20 p-1 border text-sm font-mono"
+                                    className="w-20 p-1 border text-sm font-mono text-black dark:text-white bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 rounded"
                                     value={selectedElement.label || ''}
                                     onChange={(e) => onUpdateElement('label', e.target.value)}
                                     placeholder="e.g. a,b"
@@ -195,7 +212,7 @@ export default function Sidebar({
                         id="test-input-field"
                         type="text"
                         placeholder="Test input string..."
-                        className="w-full p-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded text-sm mb-2 font-mono pr-8 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                        className="w-full p-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded text-sm mb-2 font-mono pr-8 text-black dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
                         onKeyDown={(e) => {
                             if (e.key === 'Enter') onTestInput(e.target.value);
                         }}
